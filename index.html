@@ -6,24 +6,50 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="./style.css">
 <style>
-    body { margin: 0; padding: 0; }
-        #map { position: absolute; top: 0; bottom: 0; width: 100%; };
+    /* body { margin: 0; padding: 0; } */
+        /* #map { position: absolute; top: 0; bottom: 0; width: 100%; }; */
 </style>
 </head>
 <body>
-    <h1>MyMAP</h1>
-<div id='map'></div>
+    <div class="wrapper">
+        <h1>MyMAP</h1>
+        <div id='map'></div>
+        <div id="geocoder" class="geocoder"></div>
+    </div>
+
 <script>
 // mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyZ3NtaXRoNjQiLCJhIjoiY2szeXduMmJ2MDMzdzNlbW12NmhkbG5qMiJ9.aiCcOHoIqE3VFKaXH8AfHg';
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyZ3NtaXRoNjQiLCJhIjoiY2szeXd6NGZiMWtnbzNqb3B2eWVld21tdyJ9.-WdbFgzctpPEVBLIBby7Iw';
+// МОЙ ТОКЕН:
+// mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyZ3NtaXRoNjQiLCJhIjoiY2szeXd6NGZiMWtnbzNqb3B2eWVld21tdyJ9.-WdbFgzctpPEVBLIBby7Iw';
 
+// var map = new mapboxgl.Map({
+//     container: 'map',
+//     style: 'mapbox://styles/mapbox/streets-v11', 
+//     center: [46.0435, 51.526],
+//     zoom: 16
+// });
+
+
+
+// SEARCH and INDEX
+mapboxgl.accessToken =
+  "pk.eyJ1Ijoic2VyZ3NtaXRoNjQiLCJhIjoiY2szeXduMmJ2MDMzdzNlbW12NmhkbG5qMiJ9.aiCcOHoIqE3VFKaXH8AfHg";
 var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-    center: [-74.50, 40], // starting position [lng, lat]
-    zoom: 9 // starting zoom
+  container: "map",
+  style: "mapbox://styles/mapbox/streets-v11",
+  center: [-79.4512, 43.6568],
+  zoom: 13
 });
+
+var geocoder = new MapboxGeocoder({
+  accessToken: mapboxgl.accessToken,
+  mapboxgl: mapboxgl
+});
+
+document.getElementById("geocoder").appendChild(geocoder.onAdd(map));
+
 </script>
 
 </body>
